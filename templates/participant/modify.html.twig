@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'participant.label.title'|trans }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    <div class="row">
+        <!-- Image -->
+        <div class="col-md-3">
+            <img src="{{ asset('img/nopicture.png') }}" class="img-fluid"/>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-8">
+            <!-- Pseudo -->
+            <div class="form-group row">
+                {{ form_label(form.pseudo, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.pseudo, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Prénom -->
+            <div class="form-group row">
+                {{ form_label(form.prenom, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Nom -->
+            <div class="form-group row">
+                {{ form_label(form.nom, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Téléphone -->
+            <div class="form-group row">
+                {{ form_label(form.telephone, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group row">
+                {{ form_label(form.email, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Mot de passe -->
+            <div class="form-group row">
+                {{ form_label(form.password.first, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Confirmation Mot de passe -->
+            <div class="form-group row">
+                {{ form_label(form.password.second, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Campus -->
+            <div class="form-group row">
+                {{ form_label(form.campus, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.campus, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary btn-block">{{ 'participant.label.save'|trans }}</button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-3">
+            <a class="btn btn-secondary btn-block" role="button" href="{{ path('default_home') }}">{{ 'participant.label.cancel'|trans }}</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}

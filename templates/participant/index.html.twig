@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ participant.pseudo }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <!-- Image -->
+            <div class="col-md-3">
+                <img src="{{ asset('img/nopicture.png') }}" class="img-fluid"/>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+                <!-- Prénom -->
+                <div class="form-group row">
+                    <label for="inFirstname" class="col-md-3 col-form-label">{{ 'participant.label.firstname'|trans }}</label>
+                    <div class="col-md-6">
+                        <input id="inFirstname" class="form-control" readonly value="{{ participant.prenom }}">
+                    </div>
+                </div>
+                <!-- Nom -->
+                <div class="form-group row">
+                    <label for="inLastname" class="col-md-3 col-form-label">{{ 'participant.label.lastname'|trans }}</label>
+                    <div class="col-md-6">
+                        <input id="inLastname" class="form-control" readonly value="{{ participant.nom }}">
+                    </div>
+                </div>
+                <!-- Téléphone -->
+                <div class="form-group row">
+                    <label for="inPhone" class="col-md-3 col-form-label">{{ 'participant.label.picture'|trans }}</label>
+                    <div class="col-md-6">
+                        <input id="inPhone" class="form-control" readonly value="{{ participant.telephone }}">
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group row">
+                    <label for="inEmail" class="col-md-3 col-form-label">{{ 'participant.label.email'|trans }}</label>
+                    <div class="col-md-6">
+                        <input id="inEmail" class="form-control" readonly value="{{ participant.email }}">
+                    </div>
+                </div>
+                <!-- Campus -->
+                <div class="form-group row">
+                    <label for="inCampus" class="col-md-3 col-form-label">{{ 'participant.label.campus'|trans }}</label>
+                    <div class="col-md-6">
+                        <input id="inCampus" class="form-control" readonly value="{{ participant.campus.nom }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a class="btn btn-secondary btn-block" role="button" href="{{ app.request.headers.get('referer') }}">{{ 'participant.label.return'|trans }}</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </div>
+{% endblock %}

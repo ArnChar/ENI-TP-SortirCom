@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'home.label.title'|trans }}{% endblock %}
+
+{% block header %}
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    {{ 'home.label.now'|trans }} : <strong>{{ model.now|date('d/m/Y') }}</strong><br>
+                    {{ 'home.label.user'|trans }} : <strong>{{ model.participant.prenom }} {{ model.participant.nom }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row mt-3">
+        <h5>{{ 'home.label.filter_title'|trans }}</h5>
+    </div>
+
+    {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    <div class="row mt-3">
+        <div class="col-md-7">
+            <!-- Campus -->
+            <div class="form-group row">
+                {{ form_label(form.campus, null, {'label_attr': {'class': 'col-md-2 col-form-label'}}) }}
+                <div class="col-md-6">
+                    {{ form_widget(form.campus, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Nom de la sortie -->
+            <div class="form-group row">
+                {{ form_label(form.name, null, {'label_attr': {'class': 'col-md-5 col-form-label'}}) }}
+                <div class="col-md-7">
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <!-- Dates début / fin -->
+            <div class="form-group row">
+                {{ form_label(form.dateFrom, null, { 'label_attr': {'class': 'col-md-1 control-label'} }) }}
+                <div class='col-md-5 input-group date'>
+                    {{ form_widget(form.dateFrom, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_label(form.dateTo, null, {'label_attr': {'class': 'col-md-1 col-form-label'}}) }}
+                <div class="col-md-5 input-group date">
+                    {{ form_widget(form.dateTo, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <!-- Cases à cocher -->
+            {{ form_row(form.manager) }}
+            {{ form_row(form.subscribed) }}
+            {{ form_row(form.notSubscribed) }}
+            {{ form_row(form.outdated) }}
+        </div>
+    </div>
+    <!-- Bouton de recherche -->
+    <div class="row my-3">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-block">{{ 'home.label.search'|trans }}</button>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+    <!-- liste des sorties filtrées -->
+    <div class="row my-5">
+        <table class="table table-sm">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">{{ 'home.label.table_name'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_date'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_closure'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_vacancy'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_status'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_subscribed'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_manager'|trans }}</th>
+                <th scope="col">{{ 'home.label.table_actions'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in model.rows %}
+                <tr>
+                    <td class="align-middle">{{ row.name }}</td>
+                    <td class="align-middle">{{ row.date|date('d/m/Y H:i') }}</td>
+                    <td class="align-middle">{{ row.closure|date('d/m/Y H:i') }}</td>
+                    <td class="align-middle">{{ row.vacancy }}</td>
+                    <td class="align-middle">{{ row.status.libelle }}</td>
+                    <td class="align-middle">
+                        {% if row.subscribed==true %}
+                            <span class="fa fa-check-circle-o"></span>
+                        {% endif %}</td>
+                    <td class="align-middle">
+                        <a href="{{ path('participant_show', {'id': row.manager.id}) }}" >
+                            {{ row.manager.nom }} {{ row.manager.prenom|slice(0,1) }}.
+                        </a>
+                    </td>
+                    <td class="align-middle">
+                        {% for action in row.actions %}
+                            {% set btn_class = action == row.CANCEL ? 'btn-outline-danger' : 'btn-outline-secondary' %}
+                            <a class="btn {{ btn_class }} btn-sm"
+                               href="{{ path('sortie_'~action, {'id': row.id}) }}" role="button">
+                                {{ ('home.label.'~action)|trans }}
+                            </a>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

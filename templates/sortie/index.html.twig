@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'sortie.label.show_title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Nom -->
+                <div class="form-group row">
+                    {{ form_label(form.nom, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-8">
+                        {{ form_widget(form.nom, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+                <!-- Date Heure de la sortie -->
+                <div class="form-group row">
+                    {{ form_label(form.dateHeureDebut, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-5">
+                        {{ form_widget(form.dateHeureDebut, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+                <!-- Date limite d'inscription -->
+                <div class="form-group row">
+                    {{ form_label(form.dateLimiteInscription, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-5">
+                        {{ form_widget(form.dateLimiteInscription, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+                <!-- Nombre de places -->
+                <div class="form-group row">
+                    {{ form_label(form.nbInscriptionsMax, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-3">
+                        {{ form_widget(form.nbInscriptionsMax, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+                <!-- Durée -->
+                <div class="form-group row">
+                    {{ form_label(form.duree, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-3">
+                        {{ form_widget(form.duree, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                    <p class="col-form-label">{{ 'sortie.label.minutes'|trans }}</p>
+                </div>
+                <!-- Description et infos -->
+                <div class="form-group row">
+                    {{ form_label(form.infosSortie, null, {'label_attr': {'class': 'col-md-4 col-form-label'}}) }}
+                    <div class="col-md-8">
+                        {{ form_widget(form.infosSortie, {'attr': {
+                            'class': 'form-control',
+                            'rows': 4,
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+           </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-5">
+                <!-- Campus -->
+                <div class="form-group row">
+                    {{ form_label(form.campus, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                    <div class="col-md-6">
+                        {{ form_widget(form.campus, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+                <!-- Lieu -->
+                <div class="form-group row">
+                    {{ form_label(form.lieu, null, {'label_attr': {'class': 'col-md-3 col-form-label'}}) }}
+                    <div class="col-md-6">
+                        {{ form_widget(form.lieu, {'attr': {
+                            'class': 'form-control',
+                            'disabled': true
+                        } }) }}
+                    </div>
+                </div>
+
+                <div class="card bg-light card-body pt-4 px-5">
+                    <!-- Rue du Lieu -->
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ 'sortie.label.street'|trans }}</label>
+                        <label class="col-md-8 col-form-label">{{ form.vars.value.lieu.rue }}</label>
+                    </div>
+                    <!-- Code postal -->
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ 'sortie.label.zipcode'|trans }}</label>
+                        <label class="col-md-8 col-form-label">{{ form.vars.value.lieu.ville.codePostal }}</label>
+                    </div>
+                    <!-- Ville -->
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ 'sortie.label.city'|trans }}</label>
+                        <label class="col-md-8 col-form-label">{{ form.vars.value.lieu.ville.nom }}</label>
+                    </div>
+                    <!-- Latitude -->
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ 'sortie.label.latitude'|trans }}</label>
+                        <label class="col-md-8 col-form-label">{{ form.vars.value.lieu.latitude }}</label>
+                    </div>
+                    <!-- Latitude -->
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">{{ 'sortie.label.longitude'|trans }}</label>
+                        <label class="col-md-8 col-form-label">{{ form.vars.value.lieu.longitude }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- liste des participants -->
+        <div class="form-group row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="row mt-4">
+                    <h5>{{ 'sortie.label.subscribed_list'|trans }}</h5>
+                </div>
+                <div class="row mt-2">
+                    <table class="table table-sm">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">{{ 'sortie.label.subscribed_userid'|trans }}</th>
+                            <th scope="col">{{ 'sortie.label.subscribed_name'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for participant in form.vars.value.participants %}
+                            <tr>
+                                <td class="align-middle">
+                                    <a href="{{ path('participant_show', {'id': participant.id}) }}" >
+                                        {{ participant.pseudo }}
+                                    </a>
+                                </td>
+                                <td class="align-middle">{{ participant.prenom~' '~participant.nom }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a class="btn btn-secondary btn-block" role="button" href="{{ path('default_home') }}">{{ 'sortie.label.return'|trans }}</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </div>
+{% endblock %}

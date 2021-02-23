@@ -1,0 +1,14 @@
+<footer class="bg-dark py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-6"><p class="m-0 text-Left text-white">{{ 'footer.label.copyright'|trans }}</p></div>
+            <div class="col-6">
+                {% if app.user %}
+                    <p class="m-0 text-right text-white">{{ 'footer.label.signed'|trans }} '{{ app.user.pseudo }}' ({{ app.user.roles|join(', ')|replace({'ROLE_':''})|lower }})</p>
+                {% else %}
+                    <p class="m-0 text-right text-white">{{ 'footer.label.unsigned'|trans }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

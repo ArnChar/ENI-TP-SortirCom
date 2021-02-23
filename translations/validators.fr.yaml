@@ -1,0 +1,7 @@
+participant:
+  danger:
+    pseudo_not_unique: Ce pseudo n'est pas disponible.
+    email_not_unique: Cet e-mail n'est pas disponible.
+    password_min: Le mot de passe doit comporter au moins 6 caractères.
+    password_max: Le mot de passe doit comporter au maximum 20 caractères.
+    password_check: Les mots de passe doivent correspondre.

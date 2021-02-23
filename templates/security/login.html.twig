@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'login.label.title'|trans }}{% endblock %}
+
+{% block header %}
+    <div class="row mt-5">
+        <div class="col text-center">
+            <h1 class="my-4"><img class="login_logo" src="{{ asset('img/logo.png') }}" alt="logo"> {{ 'app.label.title'|trans }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="my-4">{{ 'login.label.title'|trans }}</h2>
+        </div>
+    </div>
+{% endblock %}
+
+{% block alerts %}
+    <div class="row pb-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {% if error is not null and error.messageKey is not empty %}
+                <div class="alert alert-danger">
+                    <strong>{{ 'alert.danger'|trans }}</strong> {{ error.messageKey|trans }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row pb-5">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form class="form-horizontal" method="POST">
+
+                <div class="form-group row">
+                    <label for="inputPseudo" class="col-md-4 col-form-label">{{ 'login.label.userid'|trans }} :</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="inputPseudo" name="pseudo"
+                        value="{{ last_username }}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword" class="col-md-4 col-form-label">{{ 'login.label.password'|trans }} :</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" id="inputPassword" name="password" />
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+                <div class="row">
+                    <br>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block">{{ 'login.label.connect'|trans }}</button>
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="form-check">
+                            <input class="" type="checkbox" id="checkRemember" name="_remember_me" checked />
+                            <label class="form-check-label" for="checkRemember">{{ 'login.label.remember'|trans }}</label>
+                        </div>
+                        <div class="form-check">
+                            <a href="#">{{ 'login.label.forgotten'|trans }}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+alert:
+  danger: 'Erreur ! '
+  warning: 'Attention ! '
+  success: 'Succès : '
+  info: 'Info : '
+
+app:
+  label:
+    title: Sortir.com
+
+nav:
+  label:
+    home: Accueil
+    profile: Mon profil
+    logout: Se déconnecter
+    city: Villes
+    campus: Campus
+
+footer:
+  label:
+    copyright: Copyright © ACH / ENI Ecole 2021
+    signed: Connecté en tant que
+    unsigned: Déconnecté
+
+login:
+  label:
+    title: Se connecter
+    userid: Identifiant
+    password: Mot de passe
+    connect: Connexion
+    remember: Se souvenir de moi
+    forgotten: Mot de passe oublié
+  danger:
+    invalid_credentials: Authentification invalide.
+
+home:
+  label:
+    title: Accueil
+    now: Date du jour
+    user: Participant
+    filter_title: Filtrer les sorties
+    filter_campus: Campus
+    filter_name: Le nom de la sortie contient
+    filter_from_date: Entre
+    filter_to_date: et
+    filter_manager: Sorties dont je suis l'organisateur
+    filter_subscribed: Sorties auxquelles je suis inscrit
+    filter_not_subscribed: Sorties auxquelles je ne suis pas inscrit
+    filter_outdated: Sorties passées
+    search: Rechercher
+    create: Créer une sortie
+    table_name: Nom de la sortie
+    table_date: Date de la sortie
+    table_closure: Clôture
+    table_vacancy: Inscrits/places
+    table_status: Etat
+    table_subscribed: Inscrit
+    table_manager: Organisateur
+    table_actions: Actions
+    show: Afficher
+    modify: Modifier
+    publish: Publier
+    subscribe: S'inscrire
+    withdraw: Se désister
+    cancel: Annuler
+
+participant:
+  label:
+    title: Mon profil
+    userid: Pseudo
+    firstname: Prénom
+    lastname: Nom
+    phone: Téléphone
+    email: E-mail
+    password: Mot de passe
+    password_check: Confirmation
+    campus: Campus
+    picture: Ma photo
+    save: Enregistrer
+    cancel: Annuler
+    return: Retour
+  danger:
+    password_check: Les mots de passe doivent correspondre.
+  success:
+    update: La mise à jour du profil a été effectuée.
+
+sortie:
+  label:
+    show_title: Afficher une sortie
+    create_title: Créer une sortie
+    modify_title: Modifier une sortie
+    name: Nom de la sortie
+    date: Date et heure de la sortie
+    closure: Date limite d'inscription
+    capacity: Nombre de places
+    duration: Durée
+    minutes: minutes
+    description: Description et infos
+    campus: Campus
+    location: Lieu
+    city: Ville
+    street: Rue
+    zipcode: Code postal
+    latitude: Latitude
+    longitude: Longitude
+    subscribed_list: Liste des participants inscrits
+    subscribed_userid : Pseudo
+    subscribed_name : Nom
+    save: Enregistrer
+    publish: Publier la sortie
+    cancel: Annuler la sortie
+    return: Retour
+  warning:
+    sortie_closed: Les inscriptions à la sortie sont closes.
+  success:
+    sortie_updated: La sortie a été modifiée.
+    sortie_published: La sortie a été publiée.
+    sortie_canceled: La sortie a été annulée.
+    user_subscribed: Vous êtes désormais inscrit à la sortie.
+    user_withdraw: Vous êtes désinscrit de la sortie.
